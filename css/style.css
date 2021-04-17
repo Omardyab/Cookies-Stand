@@ -1,0 +1,18 @@
+table {
+    border: 1px solid black;
+  }
+img {
+  
+  display: inline-block;
+}
+
+h{
+  text-align: center;
+}
+
+nav {
+  text-align: left;
+}
+body{
+  font-size: x-large;
+}
