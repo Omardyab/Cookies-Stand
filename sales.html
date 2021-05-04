@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
     <link href="css/style.css" type="text/css" rel="stylesheet"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,18 +31,18 @@
          <fieldset>
             <legend> Cookies stand </legend>
             <label for="cname">CityName: </label>
-            <input type="text" id="cname">
+            <input type="text" id="cname" required>
             <br>
             <label for="Min">Min: </label>
-            <input type="number" id="Min">
+            <input type="number" id="Min" required>
             <br>
             <label for="max">Max</label>
-            <input type="number" id="max">
+            <input type="number" id="max" required>
             <br>
             <label for="avg">Average</label>
-            <input type="number" id="avg">
+            <input type="number" step=".1" id="avg" required>
             <br>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" id="subbtn">
          </fieldset>
         </form>
     </div>

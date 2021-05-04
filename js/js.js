@@ -1,17 +1,14 @@
 'use strict';
 let lastrwovalue=0;
-let Mega=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 function randomValue(min,max){
   return Math.floor(Math.random()*(max-min+1)+min);
 }
 // a golobal contatiner is better
 let container = document.getElementById('cont');
 let table=document.createElement('table');
-
 container.appendChild(table);
+let shops=[];
 let workinghours = ['06:00 am','07:00 am', '08:00 am', '09:00 am', '10:00 am','11:00 am', '12:00 pm', '01:00 pm', '02:00 pm', '03:00 pm', '04:00 pm', '05:00 pm', '06:00 pm' ,'07:00 pm'];
-
-
 function Locations(cityName,minc,maxc,avg) {
   this.cityName=cityName;
   this.minc=minc;
@@ -20,6 +17,7 @@ function Locations(cityName,minc,maxc,avg) {
   this.randomcust=[];
   this.cookiesperhour=[],
   this.total=0;
+  shops.push(this);
   console.log(this);
 }
 let city1= new Locations ('Seattle',23,65,6.3);
@@ -27,8 +25,6 @@ let city2= new Locations ('Tokyo',3,24,1.2);
 let city3= new Locations ('Dubai',11,38,3.7);
 let city4= new Locations ('Paris',20,38,2.3);
 let city5= new Locations ('Lima',2,16,4.6);
-
-
 
 Locations.prototype.calrandcust = function()
 {
@@ -47,7 +43,6 @@ Locations.prototype.calcookiesperhour = function()
     // console.log(this.total);
   }
 };
-
 function headerrow(){
   let frow=document.createElement('tr');
   table.appendChild(frow);
@@ -81,73 +76,6 @@ Locations.prototype.render= function(){
     td.textContent=`  ${this.cookiesperhour[i]}  `;
     // console.log(this.cookiesperhour[i]);
   }
-  for(let i=1;i<=15;i++)
-  {
-    if(i===1){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===2){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===3){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===4){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===5){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===6){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===7){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===8){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===9){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===10){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===11){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===12){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===13){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(Mega[i]);
-    }
-    if(i===14){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(this.cookiesperhour[i]);
-    }
-    if(i===15){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(this.cookiesperhour[i]);
-    }
-    if(i===16){
-      Mega[i]= Mega[i]+this.cookiesperhour[i-1];
-      // console.log(this.cookiesperhour[i]);
-    }
-  }
 };
 Locations.prototype.cal=function(){
   this.calrandcust();
@@ -179,6 +107,7 @@ function funform(event) {
   let rowCount = table.rows.length;
   table.deleteRow(rowCount -2);
   lastrow();
+
 }
 function lastrow(){
   let lrow=document.createElement('tr');
@@ -186,13 +115,18 @@ function lastrow(){
   let fcell=document.createElement('th');
   lrow.appendChild(fcell);
   fcell.textContent='Total';
-  // no need a text content here its an empty cell
-  // remember inside a normal function you cant use this . its not a prototype
   let td=null;
-  for(let i=1;i<16;i++)
-  {
+  console.log(shops);
+  let sum=0;
+  for (let i=0; i <=workinghours.length ; i++)
+  { sum=0;
+    for(let j=0;j<shops.length;j++)
+    {
+      sum=sum+shops[j].cookiesperhour[i];
+    }
     td=document.createElement('td');
     lrow.appendChild(td);
-    td.textContent=Mega[i];
+    td.textContent=sum;
   }
 }
+
